@@ -162,8 +162,6 @@ if selected == "Dashboards":
         GlobalRecycling.columns = [re.sub(r"\s+|/|\(|\)", "_", col).replace("__", "_").strip("_") for col in GlobalRecycling.columns]
         top_countries_GR = GlobalRecycling.sort_values('Rank').head(8)
 
-        top_countries_GR['Waste_Generated_Calculated'] = top_countries_GR['Waste_Generated_kg'] - top_countries_GR['Recycling_kg'] - top_countries_GR['Landfill_kg']
-
         chart = alt.Chart(top_countries_GR).mark_bar().encode(
             x=alt.X('Country:N', title='Country'),
             y=alt.Y('Waste_Generated_kg:Q', title='Total Waste (kg)'),
