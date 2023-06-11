@@ -193,6 +193,7 @@ if selected == "Dashboards":
 
     with col5:
         st.markdown("#### South Korea Recycling System")
+        st.write("")
         st.markdown("South Korean government is implementing **Extended Procedure Responsibility (EPR)** \
                     which is about strengthening the producer's responsibility from the production stage up to collection \
                     and recycling. What type of packaging or trash the EPR system is applied? The EPR system is applied to \
