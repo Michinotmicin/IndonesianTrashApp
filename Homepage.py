@@ -101,22 +101,20 @@ if selected == "Home":
 
     st.write('')
 
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.markdown("<span style='font-size: 25px;'>**Insights**</span>", unsafe_allow_html=True)
-        col_metric1, col_metric2, col_metric3 = st.columns(3)
-        with col_metric1:
-            st.metric("**TOP 1**", "CHN", "-395,081,376 ton ")
-        with col_metric2:
-            st.metric("**AVG**", "OTHERS", "4,072,490.89")
-        with col_metric3:
-            st.metric("**TOP 5**", "INA", "-65,200,000")
+    
+    st.markdown("<span style='font-size: 25px;'>**Insights**</span>", unsafe_allow_html=True)
+    col_metric1, col_metric2, col_metric3 = st.columns(3)
+    with col_metric1:
+        st.metric("**TOP 1**", "CHN", "-395,081,376 ton ")
+    with col_metric2:
+        st.metric("**AVG**", "OTHERS", "4,072,490.89")
+    with col_metric3:
+        st.metric("**TOP 5**", "INA", "-65,200,000")
         
-    with col2:
-        st.markdown("<span style='font-size: 25px;'>**Hypothesis**</span>", unsafe_allow_html=True)
-        st.warning("Does the increase in recycling have an effect on reducing the volume of waste that ends up in landfills? \
-                   \n\n Apakah dengan meningkatkan daur ulang, dapat mengurangi volume sampah yang berakhir di Tempat Pembuangan Akhir (TPA) Sampah?")
+
+    st.markdown("<span style='font-size: 25px;'>**Hypothesis**</span>", unsafe_allow_html=True)
+    st.warning("Does the increase in recycling have an effect on reducing the volume of waste that ends up in landfills? \
+               \n\n Apakah dengan meningkatkan daur ulang, dapat mengurangi volume sampah yang berakhir di Tempat Pembuangan Akhir (TPA) Sampah?")
 
 if selected == "Dashboards":
     # Define a function to open the webpage
