@@ -4,3 +4,4 @@ altair==4.1.0
 streamlit_option_menu
 st-annotated-text==3.0.0
 streamlit==0.87.0
+re
