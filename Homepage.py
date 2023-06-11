@@ -329,6 +329,9 @@ if selected == "Summary":
                data from Indonesia's trash composition and landfill quantities from 2019 to 2022. This implementation would \
                significantly decrease the amount of trash ending up in Indonesian landfills in the coming years.")
 
+    st.markdown("### Future Topics")
+    st.success("Can recycling improve a country's economy? Exploring the Circular Economy concept.")
+
 
 # CONTACT
 if selected == "Contact":
