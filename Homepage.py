@@ -55,8 +55,6 @@ if selected == "Home":
     others_row = pd.DataFrame({'country_name': ['Others'], 'total_msw_total_msw_generated_tons_year': [average_value]})
     # Set other columns to null/NaN
     others_row = others_row.reindex(columns=df_waste.columns)
-    # Append the new row to df_waste
-    df_waste = df_waste.append(others_row, ignore_index=True)
 
     # Concatenate the top 10 countries DataFrame and the 'Others' row
     final_df_waste = pd.concat([top_10_countries, others_row])
