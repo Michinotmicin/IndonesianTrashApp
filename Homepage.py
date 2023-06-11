@@ -117,17 +117,93 @@ if selected == "Home":
                \n\n Apakah dengan meningkatkan daur ulang, dapat mengurangi volume sampah yang berakhir di Tempat Pembuangan Akhir (TPA) Sampah?")
 
 if selected == "Dashboards":
+    # Hypotheses
+    st.sidebar.markdown("## Hypothesis")
+    st.sidebar.info("Does the increase in recycling have an effect on reducing the volume of waste that ends up in landfills? \
+                   \n\n Apakah dengan meningkatkan daur ulang, dapat mengurangi volume sampah yang berakhir di Tempat Pembuangan Akhir (TPA) Sampah?")
+
     # Define a function to open the webpage
     def source_dash1():
         webbrowser.open("https://sensoneo.com/global-waste-index/")
+    def source_dash2():
+        webbrowser.open("https://wedocs.unep.org/bitstream/handle/20.500.11822/9031/-Korea%20Environmental%20Policy%20Bulletin%20-%20Extended%20Producer%20Responsibility%20(EPR)-2010Extended%20Producer%20Responsibility_KEPB2010.pdf?sequence=3&amp%3BisAllowed=")
     # Add widgets to the sidebar
-    st.sidebar.title(f"Source of data for Dashboard")
-    if st.sidebar.button("Global Waste Index 2022 [Link]"):
+    st.sidebar.markdown(" ## Source of data for Dashboard")
+    if st.sidebar.button("Global Waste Index 2022"):
         source_dash1()
+    if st.sidebar.button("South Korea Recycling System"):
+        source_dash2()
 
-    st.title(f"You have selected {selected}")
+    st.write("")
+
+    annotated_text(
+    "As mentioned earlier, according to government data on total landfill waste,", ("Indonesia ranks 5th", ""), " among the \
+    countries that produce", ("the most waste.", ""), " Now, are you curious to know which country ",
+    ("tops the list regarding recycling", "?."),)
+
+    st.write("")
+
+    col1, col2, col3, col4, col5 = st.columns([2.4,0.2,0.8,0.2,1.4])
+
+    with col1:
+        st.markdown('<h5 style="text-align: center;">Top 8 - Waste Management & Recycling in 2022</h5>', unsafe_allow_html=True)
+
+        GlobalRecycling = pd.read_excel("Sensoneo_FullDatasetGlobalWasteIndex.xlsx")
+
+        # Data Pre-processing or Data Cleaning
+        # Replace spaces, "/", "(", and ")" with underscores in column names
+        GlobalRecycling.columns = [re.sub(r"\s+|/|\(|\)", "_", col).replace("__", "_").strip("_") for col in GlobalRecycling.columns]
+        top_countries_GR = GlobalRecycling.sort_values('Rank').head(8)
+
+        top_countries_GR['Waste_Generated_Calculated'] = top_countries_GR['Waste_Generated_kg'] - top_countries_GR['Recycling_kg'] - top_countries_GR['Landfill_kg']
+
+        chart = alt.Chart(top_countries_GR).mark_bar().encode(
+            x=alt.X('Country:N', title='Country'),
+            y=alt.Y('Waste_Generated_kg:Q', title='Total Waste (kg)'),
+            color=alt.Color('Recycled_Generated:Q', title="Recycling Rate", scale=alt.Scale(scheme='viridis')),
+            tooltip=[
+            alt.Tooltip('Country:N'),
+            alt.Tooltip('Waste_Generated_kg:Q', title='Waste Generated (kg)'),
+            alt.Tooltip('Recycled_Generated:Q', title='Recycling Rate'),
+            alt.Tooltip('Recycling_kg:Q', title='Recycled (kg)'),
+            alt.Tooltip('Landfill_kg:Q', title='Landfill (kg)')
+        ])
+
+        # Display the chart in Streamlit
+        st.altair_chart(chart, use_container_width=True)
+                    
+    with col2: 
+        st.write("")
+
+    with col3:
+        st.markdown("**INSIGHTS**")
+        st.markdown("##### SOUTH KOREA")
+        annotated_text(
+        "is ranked number 1 in terms of waste management and recycling. They are able to ", ("recycle", "60%"), \
+        "of their generated waste, which resulted to ", ("only", "0.12%"), " of the trash ended up in the landfill ",
+        "",)
+
+    with col4:
+        st.write("")
+
+    with col5:
+        st.write("###### South Korea Recycling System")
 
 
+    col11, col22, col33 = st.columns(3)
+    
+    with col11:
+        st.write("t")
+
+    with col22:
+        st.write("t")
+
+    with col33:
+        st.write("t")
+
+
+    
+    
 if selected == "Summary":
     st.title(f"You have selected {selected}")
 
