@@ -1,5 +1,7 @@
-pandas
-matplotlib
-altair
+pandas==1.3.0
+matplotlib==3.4.3
+altair==4.1.0
 streamlit_option_menu
 st-annotated-text==3.0.0
+streamlit==0.87.0
+locale==1.0.1
