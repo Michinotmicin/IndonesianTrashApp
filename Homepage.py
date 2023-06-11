@@ -255,7 +255,7 @@ if selected == "Dashboards":
             y=alt.Y('TimbulanSampahTahunan', title='Landfill (Ton)'),
             tooltip=[alt.Tooltip('Tahun', title='Year'), alt.Tooltip('TimbulanSampahTahunan', title='Current Landfill')]
         ).properties(
-            width='container',
+            width=500,
             height=400
         )
 
@@ -265,7 +265,7 @@ if selected == "Dashboards":
             y=alt.Y('TimbulanSampahTahunan', title='Landfill (Ton)'),
             tooltip=[alt.Tooltip('Tahun', title='Year'), alt.Tooltip('TimbulanSampahTahunan', title='Current Landfill')]
         ).properties(
-            width='container',
+            width=500,
             height=400
         )
 
@@ -275,7 +275,7 @@ if selected == "Dashboards":
             y=alt.Y('PredictionRecyling', title='Landfill (Ton)'),
             tooltip=[alt.Tooltip('Tahun', title='Year'), alt.Tooltip('PredictionRecyling', title='Prediction Landfill ')]
         ).properties(
-            width='container',
+            width=500,
             height=400
         )
 
@@ -285,7 +285,7 @@ if selected == "Dashboards":
             y=alt.Y('PredictionRecyling', title='Landfill (Ton)'),
             tooltip=[alt.Tooltip('Tahun', title='Year'), alt.Tooltip('PredictionRecyling', title='Prediction Landfill')]
         ).properties(
-            width='container',
+            width=500,
             height=400
         )
 
