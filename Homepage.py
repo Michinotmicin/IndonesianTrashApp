@@ -35,7 +35,7 @@ if selected == "Home":
     def source_home():
         webbrowser.open("https://datacatalog.worldbank.org/search/dataset/0039597")
     # Add widgets to the sidebar
-    st.sidebar.title(f"Source of data for Homepage")
+    st.sidebar.markdown("## Source of data for Homepage")
     if st.sidebar.button("The World Bank [Link]"):
         source_home()
 
@@ -102,7 +102,6 @@ if selected == "Home":
 
     st.write('')
 
-    
     st.markdown("<span style='font-size: 25px;'>**Insights**</span>", unsafe_allow_html=True)
     col_metric1, col_metric2, col_metric3 = st.columns(3)
     with col_metric1:
@@ -112,10 +111,11 @@ if selected == "Home":
     with col_metric3:
         st.metric("__TOP 5__", "INA", "-65,200,000")
         
-
+    st.write(" ")
+    st.write(" ")
     st.markdown("<span style='font-size: 25px;'>**Hypothesis**</span>", unsafe_allow_html=True)
     st.warning("Does the increase in recycling have an effect on reducing the volume of waste that ends up in landfills? \
-               \n\n Apakah dengan meningkatkan daur ulang, dapat mengurangi volume sampah yang berakhir di Tempat Pembuangan Akhir (TPA) Sampah?")
+                \n\n Apakah dengan meningkatkan daur ulang, dapat mengurangi volume sampah yang berakhir di Tempat Pembuangan Akhir (TPA) Sampah?")
 
 if selected == "Dashboards":
     # Hypotheses
@@ -188,7 +188,12 @@ if selected == "Dashboards":
         st.write("")
 
     with col5:
-        st.write("###### South Korea Recycling System")
+        st.markdown("###### South Korea Recycling System")
+        st.markdown("South Korean government is implementing **Extended Procedure Responsibility (EPR)** \
+                    which is about strengthening the producer's responsibility from the production stage up to collection \
+                    and recycling. What type of packaging or trash the EPR system is applied? The EPR system is applied to \
+                    four packaging materials: **paper packaging, glass bottles, metal cans, and plastic packaging**")
+
 
 
     col11, col22, col33 = st.columns(3)
@@ -203,8 +208,6 @@ if selected == "Dashboards":
         st.write("t")
 
 
-    
-    
 if selected == "Summary":
     st.title(f"You have selected {selected}")
 
