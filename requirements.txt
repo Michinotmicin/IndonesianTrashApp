@@ -1,5 +1,5 @@
 pandas
 matplotlib
 altair
-option_menu
+streamlit_option_menu
 annotated_text
