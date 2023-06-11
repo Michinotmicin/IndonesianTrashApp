@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import webbrowser
 import altair as alt
 import locale
+import re
 from streamlit_option_menu import option_menu
 from annotated_text import annotated_text
 
