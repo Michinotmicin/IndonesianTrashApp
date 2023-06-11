@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import webbrowser
 import altair as alt
-import locale
+import plotly.graph_objects as go
 import re
 from streamlit_option_menu import option_menu
 from annotated_text import annotated_text
@@ -30,6 +30,7 @@ selected = option_menu(
     },
 )
 
+# HOME
 if selected == "Home":
     # Define a function to open the webpage
     def source_home():
@@ -76,7 +77,7 @@ if selected == "Home":
 
     color_scale = alt.Scale(domain=['China', 'Indonesia', 'Others', 'United States', 'India', 'Brazil', 'Russian Federation', \
                                     'Mexico', 'Germany', 'Japan', 'France'],
-                         range=['#58508d', '#ffa600', '#ff6361', '#D3D3D3', '#D3D3D3', '#D3D3D3', '#D3D3D3', \
+                         range=['#2b758e', '#ffa600', '#ff6361', '#D3D3D3', '#D3D3D3', '#D3D3D3', '#D3D3D3', \
                                 '#D3D3D3', '#D3D3D3', '#D3D3D3', '#D3D3D3'])
 
     # Create the bar chart using Altair
@@ -117,23 +118,12 @@ if selected == "Home":
     st.warning("Does the increase in recycling have an effect on reducing the volume of waste that ends up in landfills? \
                 \n\n Apakah dengan meningkatkan daur ulang, dapat mengurangi volume sampah yang berakhir di Tempat Pembuangan Akhir (TPA) Sampah?")
 
+# DASHBOARD
 if selected == "Dashboards":
     # Hypotheses
     st.sidebar.markdown("## Hypothesis")
     st.sidebar.info("Does the increase in recycling have an effect on reducing the volume of waste that ends up in landfills? \
                    \n\n Apakah dengan meningkatkan daur ulang, dapat mengurangi volume sampah yang berakhir di Tempat Pembuangan Akhir (TPA) Sampah?")
-
-    # Define a function to open the webpage
-    def source_dash1():
-        webbrowser.open("https://sensoneo.com/global-waste-index/")
-    def source_dash2():
-        webbrowser.open("https://wedocs.unep.org/bitstream/handle/20.500.11822/9031/-Korea%20Environmental%20Policy%20Bulletin%20-%20Extended%20Producer%20Responsibility%20(EPR)-2010Extended%20Producer%20Responsibility_KEPB2010.pdf?sequence=3&amp%3BisAllowed=")
-    # Add widgets to the sidebar
-    st.sidebar.markdown(" ## Source of data for Dashboard")
-    if st.sidebar.button("Global Waste Index 2022"):
-        source_dash1()
-    if st.sidebar.button("South Korea Recycling System"):
-        source_dash2()
 
     st.write("")
 
@@ -194,24 +184,78 @@ if selected == "Dashboards":
                     and recycling. What type of packaging or trash the EPR system is applied? The EPR system is applied to \
                     four packaging materials: **paper packaging, glass bottles, metal cans, and plastic packaging**")
 
+    st.warning("The question now is whether Indonesia can adopt Korea's proven best recycling methods. \
+               Additionally, can Indonesia achieve a recycling rate of 60% by recycling its current waste to minimize \
+               the amount of trash ending up in landfills?")
 
+    col1, col2, col3, col4, col5 = st.columns([2.4,0.2,0.8,0.2,1.4])
+    col11, col22, col33 = st.columns([2.4,0.2,2.4])
 
-    col11, col22, col33 = st.columns(3)
+    TrashComposition = pd.read_excel("TrashCompositionClean.xlsx")
     
     with col11:
-        st.write("t")
+        st.sidebar.markdown("## Trash Composition Parameter")
+        selected_year = st.sidebar.selectbox('Select Year', TrashComposition['Tahun'].unique())
+
+        # Filter the DataFrame based on the selected year
+        filtered_df = TrashComposition[TrashComposition['Tahun'] == selected_year]
+
+        # Calculate the total for each column
+        total_per_column = filtered_df.iloc[:, 2:].sum()
+
+        # Create the pie chart using Plotly
+        fig = go.Figure(data=go.Pie(
+            labels=total_per_column.index,
+            values=total_per_column.values,
+            hoverinfo='label+value',
+            textinfo='percent',
+        ))
+
+        # Set the chart title
+        fig.update_layout(
+            title={
+            'text': f"Trash Composition in {selected_year}",
+            'x': 0.18,  # Set the x-position to center
+        },
+            title_font_size=22,
+        )
+
+        # Display the chart
+        st.plotly_chart(fig, use_container_width=True)
 
     with col22:
-        st.write("t")
+        st.write("")
 
     with col33:
-        st.write("t")
+        st.write("")
 
 
+    # Define a function to open the webpage
+    def source_dash1():
+        webbrowser.open("https://sensoneo.com/global-waste-index/")
+    def source_dash2():
+        webbrowser.open("https://wedocs.unep.org/bitstream/handle/20.500.11822/9031/-Korea%20Environmental%20Policy%20Bulletin%20-%20Extended%20Producer%20Responsibility%20(EPR)-2010Extended%20Producer%20Responsibility_KEPB2010.pdf?sequence=3&amp%3BisAllowed=")
+    def source_dash3():
+        webbrowser.open("https://sipsn.menlhk.go.id/sipsn/public/data/komposisi")
+    def source_dash4():
+        webbrowser.open("https://sipsn.menlhk.go.id/sipsn/public/data/capaian#")
+    # Add widgets to the sidebar
+    st.sidebar.markdown(" ## Source of data for Dashboard")
+    if st.sidebar.button("Global Waste Index 2022"):
+        source_dash1()
+    if st.sidebar.button("South Korea Recycling System"):
+        source_dash2()
+    if st.sidebar.button("Indonesia Trash Composition"):
+        source_dash3()
+    if st.sidebar.button("Indonesia's Landfill Data"):
+        source_dash4()
+
+# SUMMARY
 if selected == "Summary":
     st.title(f"You have selected {selected}")
 
 
+# CONTACT
 if selected == "Contact":
     # di sidebar taro hypothesis and findings!
 
