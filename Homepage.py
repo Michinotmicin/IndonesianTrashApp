@@ -227,7 +227,7 @@ if selected == "Dashboards":
             hovertemplate='%{label}: %{value:.2f}',
         ))
 
-        st.markdown(f"##### Trash Composition in {selected_year}")
+        st.markdown(f"#### Trash Composition in {selected_year}")
         st.write("Based on the Indonesian trash composition, if South Korean EPR is implemented by assuming that all plastic, \
                  metal, paper, and glass can be effectively recycled, the average recyclable portion of these materials \
                  from 2019 to 2022 will be 31%. ")
@@ -239,7 +239,7 @@ if selected == "Dashboards":
         st.write("")
 
     with col33:
-        st.markdown("##### Prediction Landfill If Proper Recycling is Done")
+        st.markdown("#### Prediction Landfill If Proper Recycling is Done")
         st.write("By applying the recycling rate to the current Indonesian landfill data, a significant decrease \
                  in the amount of trash ending up in landfills can be expected.")
         st.write("")
