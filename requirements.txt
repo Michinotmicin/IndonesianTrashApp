@@ -4,7 +4,3 @@ matplotlib.pyplot
 webbrowser
 altair
 locale
-streamlit_option_menu
-annotated_text
-option_menu
-annotated_text
