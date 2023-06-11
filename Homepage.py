@@ -38,9 +38,9 @@ if selected == "Home":
     if st.sidebar.button("The World Bank [Link]"):
         source_home()
 
-    st.markdown("<span style='font-size: 25px;'>**Background Information**</span>", unsafe_allow_html=True)
+    st.markdown("<span style='font-size: 25px;'>__Background Information__</span>", unsafe_allow_html=True)
     annotated_text(
-    "Aren't you curious which country **ranks at the top** in terms of **donating waste**?      ",
+    "Aren't you curious which country __ranks at the top__ in terms of __donating waste__?      ",
     ("The World Bank", ""),)
 
     # Data Top Waste
@@ -105,11 +105,11 @@ if selected == "Home":
     st.markdown("<span style='font-size: 25px;'>**Insights**</span>", unsafe_allow_html=True)
     col_metric1, col_metric2, col_metric3 = st.columns(3)
     with col_metric1:
-        st.metric("**TOP 1**", "CHN", "-395,081,376 ton ")
+        st.metric("__TOP 1__", "CHN", "-395,081,376 ton ")
     with col_metric2:
-        st.metric("**AVG**", "OTHERS", "4,072,490.89")
+        st.metric("__AVG__", "OTHERS", "4,072,490.89")
     with col_metric3:
-        st.metric("**TOP 5**", "INA", "-65,200,000")
+        st.metric("__TOP 5__", "INA", "-65,200,000")
         
 
     st.markdown("<span style='font-size: 25px;'>**Hypothesis**</span>", unsafe_allow_html=True)
