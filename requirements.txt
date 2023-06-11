@@ -1,3 +1,5 @@
 pandas
 matplotlib
 altair
+option_menu
+annotated_text
