@@ -62,7 +62,7 @@ if selected == "Home":
     # Add 'rank' column with ranking
     final_df_waste['rank'] = final_df_waste['total_msw_total_msw_generated_tons_year'].rank(ascending=False)
     # Set the rank value for 'Others' as '-'
-    final_df_waste.loc[final_df_waste['country_name'] == 'Others', 'rank'] = '11'
+    final_df_waste.loc[final_df_waste['country_name'] == 'Others', 'rank'] = 11
 
     # Default ALL & Multiselect
     all_countries = final_df_waste['country_name'].tolist()
