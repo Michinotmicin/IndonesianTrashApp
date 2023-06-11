@@ -197,7 +197,8 @@ if selected == "Dashboards":
                     which is about strengthening the producer's responsibility from the production stage up to collection \
                     and recycling. What type of packaging or trash the EPR system is applied? The EPR system is applied to \
                     four packaging materials: **paper packaging, glass bottles, metal cans, and plastic packaging**")
-
+    st.write("")
+    st.write("")
     st.warning("The question now is whether Indonesia can adopt Korea's proven best recycling methods. \
                Additionally, can Indonesia achieve a recycling rate of 60% by recycling its current waste to minimize \
                the amount of trash ending up in landfills?")
