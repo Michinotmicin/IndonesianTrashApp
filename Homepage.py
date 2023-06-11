@@ -182,7 +182,7 @@ if selected == "Dashboards":
 
     with col3:
         st.markdown("**INSIGHTS**")
-        st.markdown("##### SOUTH KOREA")
+        st.markdown("#### SOUTH KOREA")
         annotated_text(
         "is ranked number 1 in terms of waste management and recycling. They are able to ", ("recycle", "60%"), \
         "of their generated waste, which resulted to ", ("only", "0.12%"), " of the trash ended up in the landfill ",
@@ -192,7 +192,7 @@ if selected == "Dashboards":
         st.write("")
 
     with col5:
-        st.markdown("##### South Korea Recycling System")
+        st.markdown("#### South Korea Recycling System")
         st.markdown("South Korean government is implementing **Extended Procedure Responsibility (EPR)** \
                     which is about strengthening the producer's responsibility from the production stage up to collection \
                     and recycling. What type of packaging or trash the EPR system is applied? The EPR system is applied to \
@@ -254,7 +254,7 @@ if selected == "Dashboards":
             y=alt.Y('TimbulanSampahTahunan', title='Landfill (Ton)'),
             tooltip=[alt.Tooltip('Tahun', title='Year'), alt.Tooltip('TimbulanSampahTahunan', title='Current Landfill')]
         ).properties(
-            width=600,
+            width='container',
             height=400
         )
 
@@ -264,7 +264,7 @@ if selected == "Dashboards":
             y=alt.Y('TimbulanSampahTahunan', title='Landfill (Ton)'),
             tooltip=[alt.Tooltip('Tahun', title='Year'), alt.Tooltip('TimbulanSampahTahunan', title='Current Landfill')]
         ).properties(
-            width=600,
+            width='container',
             height=400
         )
 
@@ -274,7 +274,7 @@ if selected == "Dashboards":
             y=alt.Y('PredictionRecyling', title='Landfill (Ton)'),
             tooltip=[alt.Tooltip('Tahun', title='Year'), alt.Tooltip('PredictionRecyling', title='Prediction Landfill ')]
         ).properties(
-            width=600,
+            width='container',
             height=400
         )
 
@@ -284,7 +284,7 @@ if selected == "Dashboards":
             y=alt.Y('PredictionRecyling', title='Landfill (Ton)'),
             tooltip=[alt.Tooltip('Tahun', title='Year'), alt.Tooltip('PredictionRecyling', title='Prediction Landfill')]
         ).properties(
-            width=600,
+            width='container',
             height=400
         )
 
