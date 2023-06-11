@@ -106,9 +106,12 @@ if selected == "Home":
     with col1:
         st.markdown("<span style='font-size: 25px;'>**Insights**</span>", unsafe_allow_html=True)
         col_metric1, col_metric2, col_metric3 = st.columns(3)
-        col_metric1.metric("**TOP 1**", "CHN", "-395,081,376 ton ")
-        col_metric2.metric("**AVG**", "OTHERS", "4,072,490.89")
-        col_metric3.metric("**TOP 5**", "INA", "-65,200,000")
+        with col_metric1:
+            st.metric("**TOP 1**", "CHN", "-395,081,376 ton ")
+        with col_metric2:
+            st.metric("**AVG**", "OTHERS", "4,072,490.89")
+        with col_metric3:
+            st.metric("**TOP 5**", "INA", "-65,200,000")
         
     with col2:
         st.markdown("<span style='font-size: 25px;'>**Hypothesis**</span>", unsafe_allow_html=True)
@@ -129,6 +132,7 @@ if selected == "Dashboards":
 
 if selected == "Summary":
     st.title(f"You have selected {selected}")
+
 
 if selected == "Contact":
     # di sidebar taro hypothesis and findings!
