@@ -129,8 +129,8 @@ if selected == "Home":
     st.write(" ")
     st.write(" ")
     st.markdown("<span style='font-size: 25px;'>**Hypothesis**</span>", unsafe_allow_html=True)
-    st.warning("Does the increase in recycling have an effect on reducing the volume of waste that ends up in landfills? \
-                \n\n Apakah dengan meningkatkan daur ulang, dapat mengurangi volume sampah yang berakhir di Tempat Pembuangan Akhir (TPA) Sampah?")
+    st.warning("Does the increase in recycling have an effect on reducing the volume of waste that ends up in Indonesia landfills? \
+                \n\n Apakah dengan meningkatkan daur ulang, dapat mengurangi volume sampah yang berakhir di Tempat Pembuangan Akhir (TPA) Sampah Indonesia?")
 
 # DASHBOARD
 if selected == "Dashboards":
@@ -138,8 +138,8 @@ if selected == "Dashboards":
 
     # Hypotheses
     st.sidebar.markdown("## Hypothesis")
-    st.sidebar.info("Does the increase in recycling have an effect on reducing the volume of waste that ends up in landfills? \
-                   \n\n Apakah dengan meningkatkan daur ulang, dapat mengurangi volume sampah yang berakhir di Tempat Pembuangan Akhir (TPA) Sampah?")
+    st.sidebar.info("Does the increase in recycling have an effect on reducing the volume of waste that ends up in Indonesia landfills? \
+                   \n\n Apakah dengan meningkatkan daur ulang, dapat mengurangi volume sampah yang berakhir di Tempat Pembuangan Akhir (TPA) Sampah Indonesia?")
 
     st.write("")
 
@@ -317,8 +317,8 @@ if selected == "Dashboards":
 if selected == "Summary":
     # Hypotheses
     st.markdown("### Hypothesis")
-    st.info("Does the increase in recycling have an effect on reducing the volume of waste that ends up in landfills? \
-                   \n\n Apakah dengan meningkatkan daur ulang, dapat mengurangi volume sampah yang berakhir di Tempat Pembuangan Akhir (TPA) Sampah?")
+    st.info("Does the increase in recycling have an effect on reducing the volume of waste that ends up in Indonesia landfills? \
+                   \n\n Apakah dengan meningkatkan daur ulang, dapat mengurangi volume sampah yang berakhir di Tempat Pembuangan Akhir (TPA) Sampah Indonesia?")
 
     st.markdown("### Findings")
     st.warning("If South Korea's recycling method, known as Extended Producer Responsibility (EPR), is implemented in \
