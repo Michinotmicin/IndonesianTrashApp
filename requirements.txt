@@ -2,3 +2,4 @@ pandas
 matplotlib
 altair
 streamlit_option_menu
+annotated_text
