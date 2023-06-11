@@ -2,4 +2,4 @@ pandas
 matplotlib
 altair
 streamlit_option_menu
-annotated_text
+st-annotated-text==3.0.0
