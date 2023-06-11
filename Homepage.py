@@ -32,6 +32,8 @@ selected = option_menu(
 
 # HOME
 if selected == "Home":
+    st.sidebar.caption("Author: Michelle Tsjin")
+
     # Define a function to open the webpage
     def source_home():
         webbrowser.open("https://datacatalog.worldbank.org/search/dataset/0039597")
@@ -40,10 +42,22 @@ if selected == "Home":
     if st.sidebar.button("The World Bank [Link]"):
         source_home()
 
+    st.sidebar.markdown("## Analytical Methods")
+    st.sidebar.markdown("The analysis is conducted by observing and utilizing bar charts, pie charts, and line charts for both \
+                        the Home page and Dashboard page.")
+
     st.markdown("<span style='font-size: 25px;'>__Background Information__</span>", unsafe_allow_html=True)
+    st.markdown("Waste management and environmental sustainability are critical global concerns. As human activities continue \
+                to generate significant amounts of waste, exploring effective strategies for waste reduction and disposal \
+                becomes imperative. Recycling has gained increasing attention as a key component of waste management due to \
+                its potential positive impact on reducing the volume of waste that ends up in landfills. By collecting, \
+                processing, and converting discarded materials into new products, recycling reduces the need for raw materials \
+                and decreases waste accumulation. This paper aims to investigate whether the increase in recycling will affect \
+                reducing the volume of waste that ends up in landfills, with a specific focus on Indonesia.")
     annotated_text(
-    "Aren't you curious which country __ranks at the top__ in terms of __donating waste__?      ",
+    "Now, aren't you curious which country ranks at the top in terms of donating waster?      ",
     ("The World Bank", ""),)
+    st.write("")
 
     # Data Top Waste
     df_waste = pd.read_csv("country_level_data_0.csv")
@@ -68,7 +82,7 @@ if selected == "Home":
 
     # Default ALL & Multiselect
     all_countries = final_df_waste['country_name'].tolist()
-    selected_countries = st.multiselect('**Choose Countries:**', final_df_waste['country_name'], default=all_countries)
+    selected_countries = st.multiselect('Choose Countries:', final_df_waste['country_name'], default=all_countries)
 
     # Filter the DataFrame based on the selected countries
     filtered_df = final_df_waste[final_df_waste['country_name'].isin(selected_countries)]
@@ -106,11 +120,11 @@ if selected == "Home":
     st.markdown("<span style='font-size: 25px;'>**Insights**</span>", unsafe_allow_html=True)
     col_metric1, col_metric2, col_metric3 = st.columns(3)
     with col_metric1:
-        st.metric("__TOP 1__", "CHN", "-395,081,376 ton ")
+        st.metric("TOP 1", "CHINA", "-395,081,376 ton ")
     with col_metric2:
-        st.metric("__AVG__", "OTHERS", "4,072,490.89")
+        st.metric("AVERAGE", "OTHERS", "4,072,490.89")
     with col_metric3:
-        st.metric("__TOP 5__", "INA", "-65,200,000")
+        st.metric("TOP 5", "INDONESIA", "-65,200,000")
         
     st.write(" ")
     st.write(" ")
@@ -120,6 +134,8 @@ if selected == "Home":
 
 # DASHBOARD
 if selected == "Dashboards":
+    st.sidebar.caption("Author: Michelle Tsjin")
+
     # Hypotheses
     st.sidebar.markdown("## Hypothesis")
     st.sidebar.info("Does the increase in recycling have an effect on reducing the volume of waste that ends up in landfills? \
@@ -209,16 +225,13 @@ if selected == "Dashboards":
             values=total_per_column.values,
             hoverinfo='label+value',
             textinfo='percent',
+            hovertemplate='%{label}: %{value:.2f}',
         ))
 
-        # Set the chart title
-        fig.update_layout(
-            title={
-            'text': f"Trash Composition in {selected_year}",
-            'x': 0.18,  # Set the x-position to center
-        },
-            title_font_size=22,
-        )
+        st.markdown(f"##### Trash Composition in {selected_year}")
+        st.write("Based on the Indonesian trash composition, if South Korean EPR is implemented by assuming that all plastic, \
+                 metal, paper, and glass can be effectively recycled, the average recyclable portion of these materials \
+                 from 2019 to 2022 will be 31%. ")
 
         # Display the chart
         st.plotly_chart(fig, use_container_width=True)
@@ -227,8 +240,60 @@ if selected == "Dashboards":
         st.write("")
 
     with col33:
+        st.markdown("##### Prediction Landfill If Proper Recycling is Done")
+        st.write("By applying the recycling rate to the current Indonesian landfill data, a significant decrease \
+                 in the amount of trash ending up in landfills can be expected.")
         st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        
+        TPA_df = pd.read_excel("Recyled_TPA_Clean.xlsx")
+                
+        # Bar Chart
+        bar_chart = alt.Chart(TPA_df).mark_bar(color='lightgrey').encode(
+            alt.X('Tahun:O', axis=alt.Axis(format='d'), title='Year'),
+            y=alt.Y('TimbulanSampahTahunan', title='Landfill (Ton)'),
+            tooltip=[alt.Tooltip('Tahun', title='Year'), alt.Tooltip('TimbulanSampahTahunan', title='Current Landfill')]
+        ).properties(
+            width=600,
+            height=400
+        )
 
+        # Create the line chart
+        line_chart = alt.Chart(TPA_df).mark_line(color='purple').encode(
+            alt.X('Tahun:O', axis=alt.Axis(format='d'), title='Year'),
+            y=alt.Y('TimbulanSampahTahunan', title='Landfill (Ton)'),
+            tooltip=[alt.Tooltip('Tahun', title='Year'), alt.Tooltip('TimbulanSampahTahunan', title='Current Landfill')]
+        ).properties(
+            width=600,
+            height=400
+        )
+
+        # Bar Chart Prediciton
+        bar_char_pred = alt.Chart(TPA_df).mark_bar(color='#3b518a').encode(
+            alt.X('Tahun:O', axis=alt.Axis(format='d'), title='Year'),
+            y=alt.Y('PredictionRecyling', title='Landfill (Ton)'),
+            tooltip=[alt.Tooltip('Tahun', title='Year'), alt.Tooltip('PredictionRecyling', title='Prediction Landfill ')]
+        ).properties(
+            width=600,
+            height=400
+        )
+
+        # Line Chart Prediction
+        line_chart_pred = alt.Chart(TPA_df).mark_line(color='#fce725', strokeWidth=4).encode(
+            alt.X('Tahun:O', axis=alt.Axis(format='d'), title='Year'),
+            y=alt.Y('PredictionRecyling', title='Landfill (Ton)'),
+            tooltip=[alt.Tooltip('Tahun', title='Year'), alt.Tooltip('PredictionRecyling', title='Prediction Landfill')]
+        ).properties(
+            width=600,
+            height=400
+        )
+
+        # Combine the bar chart and line chart
+        combined_chart = bar_chart + line_chart + bar_char_pred + line_chart_pred
+
+        st.altair_chart(combined_chart, use_container_width=True)
 
     # Define a function to open the webpage
     def source_dash1():
@@ -252,17 +317,32 @@ if selected == "Dashboards":
 
 # SUMMARY
 if selected == "Summary":
-    st.title(f"You have selected {selected}")
+    # Hypotheses
+    st.markdown("### Hypothesis")
+    st.info("Does the increase in recycling have an effect on reducing the volume of waste that ends up in landfills? \
+                   \n\n Apakah dengan meningkatkan daur ulang, dapat mengurangi volume sampah yang berakhir di Tempat Pembuangan Akhir (TPA) Sampah?")
+
+    st.markdown("### Findings")
+    st.warning("If South Korea's recycling method, known as Extended Producer Responsibility (EPR), is implemented in \
+               Indonesia, focusing on recycling paper packaging, glass bottles, metal cans, and plastic packaging, it is \
+               predicted that an average of 31% of the current landfill waste can be effectively recycled based on acquired \
+               data from Indonesia's trash composition and landfill quantities from 2019 to 2022. This implementation would \
+               significantly decrease the amount of trash ending up in Indonesian landfills in the coming years.")
 
 
 # CONTACT
 if selected == "Contact":
-    # di sidebar taro hypothesis and findings!
+    st.markdown("#### Author")
+    st.markdown("Hi 👋, my name is **Michelle Tsjin**, and I am currently an undergraduate student studying Data Science \
+                and Big Data Technology with a focus on Contemporary Entrepreneurialism. If you're interested in getting \
+                to know me better, please find more information below:")
+    
+    def linkedin():
+        webbrowser.open("https://www.linkedin.com/in/michelle-tsjin/")
+    if st.button("Linkedin"):
+        linkedin()
 
-    # maybe add What I do
-
-    st.title(f"You have selected {selected}")
-
+    st.write("")
     st.markdown("#### 📩 Get In Touch With Me!")
 
 
